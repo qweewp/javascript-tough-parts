@@ -87,7 +87,7 @@ console.log(addByFour(10)); //should return 14
 function once(addByTwo) {
     let firstInputValue;
     const innerOnce = function (input) {
-        if(!firstInputValue) {
+        if (!firstInputValue) {
             firstInputValue = input;
         }
         return addByTwo(firstInputValue);
@@ -107,22 +107,31 @@ console.log(onceFunc(9001));  //should log 6
 // Write a function after that takes the number of times the callback needs to be called before being executed
 // as the first parameter and the callback as the second parameter.
 function after(count, func) {
-
+    let counter = 1;
+    function innerFunction(input) {
+        if (counter < count) {
+            counter++
+            return undefined;
+        } else {
+            return func(input)
+        }
+    }
+    return innerFunction;
 }
 
 const called = function () { console.log('hello') };
 const afterCalled = after(3, called);
 
-// afterCalled(); // -> nothing is printed
-// afterCalled(); // -> nothing is printed
-// afterCalled(); // -> 'hello' is printed
+afterCalled(); // -> nothing is printed
+afterCalled(); // -> nothing is printed
+afterCalled(); // -> 'hello' is printed
 
 
 // Extension: Challenge 7
 // Write a function delay that accepts a callback as the first parameter and the wait in milliseconds before allowing the callback to be invoked as the second parameter.
 // Any additional arguments after wait are provided to func when it is invoked. HINT: research setTimeout();
 function delay(func, wait) {
-
+    setTimeout(wait, func)
 }
 
 
@@ -132,13 +141,23 @@ function delay(func, wait) {
 // The second time it is invoked, it should log the second name to the console, and so on, until all names have been called.
 // Once all names have been called, it should log 'Everyone accounted for'.
 function rollCall(names) {
-
+    let rollCounter = 0;
+    function innerFunction() {
+        if (rollCounter < names.length) {
+            console.log(names[rollCounter])
+            rollCounter++;
+        } else {
+            console.log('Everyone accounted for');
+        }
+    }
+    return innerFunction;
 }
 
 // UNCOMMENT THESE TO TEST YOUR WORK!
-// const rollCaller = rollCall(['Victoria', 'Juan', 'Ruth'])
-// rollCaller() // -> Should log 'Victoria'
-// rollCaller() // -> Should log 'Juan'
-// rollCaller() // -> Should log 'Ruth'
-// rollCaller() // -> Should log 'Everyone accounted for'
+const rollCaller = rollCall(['Victoria', 'Juan', 'Ruth'])
+rollCaller() // -> Should log 'Victoria'
+rollCaller() // -> Should log 'Juan'
+rollCaller() // -> Should log 'Ruth'
+rollCaller() // -> Should log 'Everyone accounted for'
+rollCaller() // -> Should log 'Everyone accounted for'
 
