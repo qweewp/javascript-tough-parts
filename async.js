@@ -132,8 +132,24 @@ console.log('End of Challenge 3');
 console.log('Start of Challenge 4');
 // ...your code below
 
+function forEach(arr, cb) {
+  for (let i = 0; i < arr.length; i++) {
+    cb(arr[i], i);
+  }
+}
 
+const delays = [2000, 5000, 0, 3500];
 
+function delayLog(delayTime, i) {
+  setTimeout(() => { console.log(`printing element ${i}`); }, delayTime)
+}
+
+forEach(delays, delayLog);  // Start of Challenge 4
+                            // End of Challenge 4
+                            // printing element 2
+                            // printing element 0
+                            // printing element 3
+                            // printing element 1
 
 
 console.log('End of Challenge 4');
@@ -159,8 +175,25 @@ console.log('End of Challenge 4');
 console.log('Start of Challenge 5');
 // ...your code below
 
-
-
+function changeColor() {
+  var rgbBackgroundColor = document.body.style.background
+  if (rgbBackgroundColor === 'rgb(221, 238, 255)') {
+    document.body.style.background = 'rgb(255, 238, 221)';
+  } else {
+    document.body.style.background = 'rgb(221, 238, 255)';
+  }
+}
+// add listener each time if click one time everything works if click second time everything breaks etc.
+function activateBtnCallBack() {
+  console.log('clicked #1');
+  document.getElementById('color')
+    .addEventListener('click', function () {
+      console.log('clicked #2');
+      changeColor();
+    });
+}
+document.getElementById('activate')
+  .addEventListener('click', activateBtnCallBack);
 
 // ...your code above
 document.body.style.background = '#def';
