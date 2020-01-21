@@ -247,20 +247,25 @@ console.log('End of Challenge 6');
 //             //
 /////////////////
 // Perform a GET request to the Bandsintown API (hosted by swaggerhub)
-// (follow this link and then make sure 'UI' is sellected at the upper left, to read how to use their API) to search for your favorite band. For the 'app_id', use the string 'jshp'.
+// https://app.swaggerhub.com/apis/Bandsintown/PublicAPI/3.0.0
+// (follow this link and then make sure 'UI' is sellected at the upper left, to read how to use their API) to search for your favorite band.
+// For the 'app_id', use the string 'jshp'.
 
 // Then in the returned JSON, find the URL for the image associated with the band and display it in the DOM.
 
 // Make sure to use 'https' for JSBIN to allow the request. There is a div with the ID 'ch2' for you to target.
 // If you want, you can view this div by opening the HTML pane, by clicking the HTML button at the top.
 
-/* <<<=== Remove the first two slashes (//) to comment out this challenge when finished
+///* <<<=== Remove the first two slashes (//) to comment out this challenge when finished
 console.log('Start of Challenge 7');
 // ...your code below
 
-
-
-
+fetch('https://rest.bandsintown.com/artists/50cent?app_id=jshp')
+  .then(function (response) {
+    return response.json()
+  }).then(function (data) {
+    document.getElementById('ch2').innerHTML = data.image_url;
+  })
 
 console.log('End of Challenge 7');
 // */// (do not alter this line)
