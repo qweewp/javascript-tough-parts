@@ -21,13 +21,15 @@
 // Make sure the 'console' and 'output' panes are showing (click the tabs above if not) and then run your code with the 'Run with JS' button.
 
 // Clear the console. Change the delay time in the time from 3000 ms to 0. Think hard about how the order should change and then run the code again.
-// /* <<<=== Remove the first two slashes (//) to comment out this challenge when finished
+/* <<<=== Remove the first two slashes (//) to comment out this challenge when finished
 console.log('Start of Challenge 1');
 // ...your code below
 
+console.log('I am at the beginning of the code');
 
-
-
+setTimeout(function() { 
+console.log('I am in the setTimeout callback function');
+}, 0)
 
 console.log('End of Challenge 1');
 // */// (do not alter this line)
@@ -48,12 +50,16 @@ console.log('End of Challenge 1');
 // Then, modify your code again so that the "Interval Hello!" messages will automatically stop after 10 seconds without use of the clearAllIntervals function,
 // and using clearInterval only once. Perform research if you are unsure how to do this.
 
-// /* <<<=== Remove the first two slashes (//) to comment out this challenge when finished
+/* <<<=== Remove the first two slashes (//) to comment out this challenge when finished
 console.log('Start of Challenge 2');
 // ...your code below
 
+const interval = setInterval(function() { console.log('Interval Hello!'); }, 2000);
 
-
+setTimeout(function() {
+  console.log('clearInterval: ', interval);
+  clearInterval(interval);
+}, 10000)
 
 // ...your code above
 function clearAllIntervals() {
@@ -78,13 +84,28 @@ console.log('End of Challenge 2');
 
 // Now, modify your everyXsecsForYsecs function so it does not use setInterval, but still keeps the same functionality.
 
-// /* <<<=== Remove the first two slashes (//) to comment out this challenge when finished
+/* <<<=== Remove the first two slashes (//) to comment out this challenge when finished
 console.log('Start of Challenge 3');
 // ...your code below
 
+const everyXsecsForYsecs = function(aFunction, intervalTime, totalTimeSecs) {
+  let now = Date.now();
+  const total = now + totalTimeSecs;
 
+  (function inner() {
+    now += intervalTime
+    if(now <= total) {
+      setTimeout(() => {
+        aFunction();
+        inner();
+      }, intervalTime)
+    }
+  })()
+}
 
+const sayHowdy = () => { console.log('Howdy'); }
 
+everyXsecsForYsecs(sayHowdy, 1000, 5000);
 
 console.log('End of Challenge 3');
 // */// (do not alter this line)
@@ -107,7 +128,7 @@ console.log('End of Challenge 3');
 
 // Putting it all together, run the delayLog function on each item of the delays array using the forEach function you created.
 
-// /* <<<=== Remove the first two slashes (//) to comment out this challenge when finished
+/* <<<=== Remove the first two slashes (//) to comment out this challenge when finished
 console.log('Start of Challenge 4');
 // ...your code below
 
@@ -134,7 +155,7 @@ console.log('End of Challenge 4');
 // Clear the console and hit the 'Run with JS' button. Look at what code has run by analyzing the console. Then try to change the background color by clicking button #2.
 // What needs to happen for the button to work?
 
-// /* <<<=== Remove the first two slashes (//) to comment out this challenge when finished
+/* <<<=== Remove the first two slashes (//) to comment out this challenge when finished
 console.log('Start of Challenge 5');
 // ...your code below
 
@@ -165,7 +186,7 @@ console.log('End of Challenge 3');
 
 // Without changing anything else, copy-paste the console.log statement somewhere where it will log with the info we need.
 
-// /* <<<=== Remove the first two slashes (//) to comment out this challenge when finished
+/* <<<=== Remove the first two slashes (//) to comment out this challenge when finished
 console.log('Start of Challenge 6');
 var dataReceived;
 
@@ -195,7 +216,7 @@ console.log('End of Challenge 6');
 // Make sure to use 'https' for JSBIN to allow the request. There is a div with the ID 'ch2' for you to target.
 // If you want, you can view this div by opening the HTML pane, by clicking the HTML button at the top.
 
-// /* <<<=== Remove the first two slashes (//) to comment out this challenge when finished
+/* <<<=== Remove the first two slashes (//) to comment out this challenge when finished
 console.log('Start of Challenge 7');
 // ...your code below
 
@@ -219,7 +240,7 @@ console.log('End of Challenge 7');
 
 // Make sure to use 'https' for JSBIN to allow the request. There is a div with the ID 'ch3' for you to target.
 
-// /* <<<=== Remove the first two slashes (//) to comment out this challenge when finished
+/* <<<=== Remove the first two slashes (//) to comment out this challenge when finished
 console.log('Start of Challenge 8');
 // ...your code below
 
@@ -244,7 +265,7 @@ console.log('End of Challenge 8');
 
 // Make sure to use 'https' for JSBIN to allow the request. There is a div with the ID 'ch4' for you to target.
 
-// /* <<<=== Remove the first two slashes (//) to comment out this challenge when finished
+/* <<<=== Remove the first two slashes (//) to comment out this challenge when finished
 console.log('Start of Challenge 9');
 // ...your code below
 
