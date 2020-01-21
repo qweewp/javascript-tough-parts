@@ -219,17 +219,22 @@ console.log('End of Challenge 3');
 
 // Without changing anything else, copy-paste the console.log statement somewhere where it will log with the info we need.
 
-/* <<<=== Remove the first two slashes (//) to comment out this challenge when finished
+///* <<<=== Remove the first two slashes (//) to comment out this challenge when finished
 console.log('Start of Challenge 6');
 var dataReceived;
 
 function ajaxSimulate(id, callback) {
   var database = ['Aaron', 'Barbara', 'Chris'];
-
+  setTimeout(() => callback(database[id]), 0);
 }
 // ...your code below
 
+function storeData(data) {
+  dataReceived = data;
+}
 
+ajaxSimulate(1, storeData);
+console.log('dataReceived', dataReceived);
 
 console.log('End of Challenge 6');
 // */// (do not alter this line)
