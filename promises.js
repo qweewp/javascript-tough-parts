@@ -14,7 +14,7 @@ function sayHello() {
 // Create a promise. Have it resolve with a value of 'Resolved!' in resolve after a delay of 1000ms, using setTimeout.
 // Print the contents of the promise after it has been resolved by passing console.log to .then
 var promise = new Promise(function (resolve, reject) {
-  // ADD CODE HERE
+    // ADD CODE HERE
 });
 
 // Should print out "Resolved!"
@@ -25,8 +25,8 @@ var promise = new Promise(function (resolve, reject) {
 
 // Create another promise. Now have it reject with a value of "Rejected!" without using setTimeout.
 // Print the contents of the promise after it has been rejected by passing console.log to .catch
-promise = new Promise(function(resolve, reject) {
-  // ADD CODE HERE
+promise = new Promise(function (resolve, reject) {
+    // ADD CODE HERE
 })
 
 // Should print out "Reject!"
@@ -39,7 +39,7 @@ promise = new Promise(function(resolve, reject) {
 // Then uncomment the code at bottom of Challenge 4.
 // What order do we expect "Promise has been resolved!" and "I'm not the promise!" to print? Why?
 promise = new Promise(function (resolve, reject) {
-  // ADD CODE HERE
+    // ADD CODE HERE
 });
 
 // Uncomment the lines below when ready
@@ -50,7 +50,7 @@ promise = new Promise(function (resolve, reject) {
 // Challenge 5
 
 // Write a function delay that returns a promise. And that promise should return a setTimeout that calls resolve after 1000ms
-function delay(){
+function delay() {
 
 }
 
@@ -76,22 +76,22 @@ function delay(){
 // We have a API that gets data from a database,
 // it takes an index parameter and returns a promise Your challenge is to use Promise.all to make 3 API calls and return all the data when the calls are complete
 const fakePeople = [
-  { name: 'Rudolph', hasPets: false, currentTemp: 98.6 },
-  { name: 'Zebulon', hasPets: true, currentTemp: 22.6 },
-  { name: 'Harold', hasPets: true, currentTemp: 98.3 },
+    { name: 'Rudolph', hasPets: false, currentTemp: 98.6 },
+    { name: 'Zebulon', hasPets: true, currentTemp: 22.6 },
+    { name: 'Harold', hasPets: true, currentTemp: 98.3 },
 ]
 
 const fakeAPICall = (i) => {
-  const returnTime = Math.floor(Math.random() * 1000);
-  return new Promise((resolve, reject) => {
-    if (i >= 0 && i < fakePeople.length) {
-      setTimeout(() => resolve(fakePeople[i]), returnTime);
-    } else {
-      reject({ message: "index out of range" });
-    }
-  });
+    const returnTime = Math.floor(Math.random() * 1000);
+    return new Promise((resolve, reject) => {
+        if (i >= 0 && i < fakePeople.length) {
+            setTimeout(() => resolve(fakePeople[i]), returnTime);
+        } else {
+            reject({ message: "index out of range" });
+        }
+    });
 };
 
 function getAllData() {
-  // CODE GOES HERE
+    // CODE GOES HERE
 }
