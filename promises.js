@@ -2,11 +2,11 @@
 
 // Let's start by reviewing asynchronous functions! Using setTimeout, print the string 'Hello!' after 1000ms.
 function sayHello() {
-
+    console.log('Hello!');
 }
 
 // Uncomment the line below when ready
-// sayHello(); // should log "Hello" after 1000ms
+// setTimeout(sayHello, 1000); // should log "Hello" after 1000ms
 
 
 // Challenge 2
@@ -15,10 +15,14 @@ function sayHello() {
 // Print the contents of the promise after it has been resolved by passing console.log to .then
 var promise = new Promise(function (resolve, reject) {
     // ADD CODE HERE
+    // console.log('resolve', resolve); // resolve function () { [native code] }
+    // console.log('reject', reject); // reject function () { [native code] }
+    // setTimeout(() => resolve('Resolved!'), 1000);
 });
 
-// Should print out "Resolved!"
+// Should print out "Resolved!" after 1000ms
 // ADD CODE HERE
+// promise.then(data => console.log(data));
 
 
 // Challenge 3
@@ -26,11 +30,12 @@ var promise = new Promise(function (resolve, reject) {
 // Create another promise. Now have it reject with a value of "Rejected!" without using setTimeout.
 // Print the contents of the promise after it has been rejected by passing console.log to .catch
 promise = new Promise(function (resolve, reject) {
-    // ADD CODE HERE
+    // reject('Rejected!')
 })
 
 // Should print out "Reject!"
 // ADD CODE HERE
+// promise.catch(data => { console.log(data); });
 
 
 // Challenge 4
@@ -39,19 +44,21 @@ promise = new Promise(function (resolve, reject) {
 // Then uncomment the code at bottom of Challenge 4.
 // What order do we expect "Promise has been resolved!" and "I'm not the promise!" to print? Why?
 promise = new Promise(function (resolve, reject) {
-    // ADD CODE HERE
+    resolve('Promise has been resolved!');
 });
 
 // Uncomment the lines below when ready
-// promise.then(() => console.log('Promise has been resolved!));
-// console.log("I'm not the promise!");
+// promise.then(() => console.log('Promise has been resolved!')); // 2
+// console.log("I'm not the promise!"); // 1
 
 
 // Challenge 5
 
 // Write a function delay that returns a promise. And that promise should return a setTimeout that calls resolve after 1000ms
 function delay() {
-
+    return new Promise((resolve, reject) => {
+        return setTimeout(resolve, 1000);
+    })
 }
 
 // Uncomment the code below to test
@@ -67,8 +74,8 @@ function delay() {
 // Then print the contents of the promise after it has been resolved by passing console.log to .then
 //
 // ADD CODE BELOW
-// var secondPromise =
-// var firstPromise =
+// var secondPromise = new Promise(resolve => { resolve('Second!'); })
+// var firstPromise = secondPromise.then(console.log) 
 
 
 // Challenge 7
@@ -94,4 +101,11 @@ const fakeAPICall = (i) => {
 
 function getAllData() {
     // CODE GOES HERE
+    return Promise.all([
+        fakeAPICall(0),
+        fakeAPICall(1),
+        fakeAPICall(2),
+    ]);
 }
+
+getAllData().then(console.log)
