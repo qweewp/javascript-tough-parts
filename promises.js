@@ -108,4 +108,4 @@ function getAllData() {
     ]);
 }
 
-getAllData().then(console.log)
+// getAllData().then(console.log)
