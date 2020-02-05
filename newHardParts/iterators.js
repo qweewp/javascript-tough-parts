@@ -6,8 +6,11 @@ console.log('Hello, world!');
 // A) Create a for loop that iterates through an array and returns the sum of the elements of the array.
 // B) Create a functional iterator for an array that returns each value of the array when called, one element at a time.
 function sumFunc(arr) {
-    // YOUR CODE HERE
-
+    let result = 0;
+    for (let i = 0; i < arr.length; i++) {
+        result += arr[i];
+    }
+    return result;
 }
 
 // Uncomment the lines below to test your work
@@ -16,6 +19,14 @@ function sumFunc(arr) {
 
 function returnIterator(arr) {
     // YOUR CODE HERE
+    let index = 0;
+
+    const iterator = function () {
+        const element = arr[index]
+        index++;
+        return element;
+    }
+    return iterator;
 
 }
 
@@ -34,7 +45,22 @@ function returnIterator(arr) {
 // Create an iterator with a next method that returns each value of the array when .next is called.
 function nextIterator(arr) {
     // YOUR CODE HERE
+    let index = 0;
 
+    const iterator = function () {
+        const element = arr[index];
+        index++;
+        return element;
+    }
+
+    const hasNextElement = function hasNextElement() {
+        return index < arr.length;
+    }
+
+    return {
+        next: iterator,
+        hasNextElement,
+    }
 }
 
 // Uncomment the lines below to test your work
@@ -51,8 +77,13 @@ function nextIterator(arr) {
 // Write code to iterate through an entire array using your nextIterator and sum the values.
 function sumArray(arr) {
     // YOUR CODE HERE
+    let result = 0;
     // use your nextIterator function
-
+    const iterator = nextIterator(arr);
+    while (iterator.hasNextElement()) {
+        result += iterator.next();
+    }
+    return result;
 }
 
 // Uncomment the lines below to test your work
@@ -84,7 +115,18 @@ function setIterator(set) {
 // (where the first element is the index and the second is the value at that index) when .next is called.
 function indexIterator(arr) {
     // YOUR CODE HERE
+    let index = 0;
+    const iterator = function () {
+        const element = {
+            [index]: arr[index]
+        };
+        index++;
+        return element;
 
+    }
+    return {
+        next: iterator,
+    }
 }
 
 // Uncomment the lines below to test your work
@@ -106,7 +148,14 @@ function Words(string) {
 
 Words.prototype[Symbol.iterator] = function () {
     // YOUR CODE HERE
-
+    const values = this.str.split(' ');
+    let index = 0;
+    return {
+        next: () => ({
+            value: values[index],
+            done: ++index > values.length,
+        }),
+    }
 }
 
 // Uncomment the lines below to test your work
@@ -118,7 +167,21 @@ Words.prototype[Symbol.iterator] = function () {
 // Build a function that walks through an array and returns the element concatenated with the string "was found after index x", where x is the previous index.
 // Note: if it is the first element it should say that it is the first
 function valueAndPrevIndex(array) {
-
+    let index = 0;
+    const sentence = function () {
+        if (index === 0) {
+            const element = `${array[index]} it is the first`
+            index++
+            return element;
+        } else {
+            const element = `${array[index]} was found after index ${index}`
+            index++;
+            return element;
+        }
+    }
+    return {
+        sentence,
+    }
 }
 
 const returnedSentence = valueAndPrevIndex([4, 5, 6])
